@@ -75,7 +75,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Contact (Next to Support in Laptop view) */}
+          {/* Column 4: Contact */}
           <div className="footer-col" style={{ marginBottom: '1.5rem' }}>
             <h4 style={{ color: '#1a7fa0', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '1.5rem', letterSpacing: '1px' }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -111,7 +111,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal - Optimized for Background Visibility via CSS Classes */}
       {modalContent && (
         <div style={{
           position: 'fixed',
@@ -122,7 +122,7 @@ const Footer = () => {
           alignItems: 'center',
           zIndex: 10000,
           padding: '1rem',
-          backdropFilter: 'blur(5px)'
+          backdropFilter: 'blur(8px)'
         }} onClick={closeModal}>
           <div style={{
             background: '#fff',
@@ -134,53 +134,59 @@ const Footer = () => {
             position: 'relative',
             display: 'flex',
             flexDirection: 'column',
-            boxShadow: '0 30px 60px rgba(0,0,0,0.4)'
+            boxShadow: '0 40px 100px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(255,255,255,0.1)'
           }} onClick={e => e.stopPropagation()}>
-            <button onClick={closeModal} style={{
-              position: 'absolute',
-              top: '1.5rem',
-              right: '1.5rem',
-              background: '#f1f5f9',
-              border: 'none',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              cursor: 'pointer',
-              zIndex: 10
-            }}>✕</button>
             
-            <div style={{
-              height: '180px',
+            <div className="modal-header" style={{
               backgroundImage: modalContent === 'terms' 
                 ? 'url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1000)' 
                 : 'url(https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#fff',
-              textAlign: 'center',
-              padding: '1rem',
-              flexShrink: 0
             }}>
-              <div style={{ background: 'rgba(30, 41, 59, 0.8)', padding: '1.5rem', borderRadius: '16px', backdropFilter: 'blur(10px)' }}>
-                <h2 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>{modalContent === 'terms' ? 'Terms & Service' : 'Privacy Policy'}</h2>
-                <p style={{ fontSize: '0.85rem', opacity: 0.9 }}>MERCURY TECHNOLOGY Operational Guidelines</p>
+              {/* Close Button */}
+              <button onClick={closeModal} style={{
+                position: 'absolute',
+                top: '15px',
+                right: '15px',
+                background: '#fff',
+                border: 'none',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                cursor: 'pointer',
+                zIndex: 10,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
+                color: '#64748b',
+                fontWeight: 700,
+                fontSize: '0.9rem'
+              }}>✕</button>
+
+              {/* Title Box - Styled via index.css for mobile-specific scaling */}
+              <div className="modal-title-box">
+                <h2>
+                  {modalContent === 'terms' ? 'Terms & Service' : 'Privacy Policy'}
+                </h2>
+                <p style={{ fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Operational Guidelines
+                </p>
               </div>
             </div>
             
+            {/* Content Section */}
             <div 
               data-lenis-prevent 
               style={{ 
                 flex: 1, 
-                padding: '1.5rem', 
+                padding: '2.5rem 1.5rem', 
                 overflowY: 'auto', 
                 background: '#fff',
                 scrollBehavior: 'smooth'
               }}
             >
-              <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+              <div style={{ maxWidth: '750px', margin: '0 auto' }}>
                 {[
                   { title: 'Data Integrity', text: 'We ensure absolute accuracy and sub-second precision in all Mercury intelligence systems.' },
                   { title: 'Operational Privacy', text: 'Your industrial data is encrypted at the edge and never shared with third-party entities.' },
@@ -190,7 +196,7 @@ const Footer = () => {
                   { title: 'Client Confidentiality', text: 'We maintain strict non-disclosure agreements regarding all client operations and data architectures.' }
                 ].map((item, idx) => (
                   <div key={idx} style={{ marginBottom: '1.25rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                    <div style={{ color: '#1a7fa0', fontWeight: 800, flexShrink: 0, fontSize: '0.9rem' }}>
+                    <div style={{ color: '#1a7fa0', fontWeight: 900, flexShrink: 0, fontSize: '0.9rem' }}>
                       {idx + 1}.
                     </div>
                     <div style={{ color: '#475569', fontSize: '0.9rem', lineHeight: '1.5' }}>

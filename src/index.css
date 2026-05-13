@@ -117,9 +117,9 @@ h1, h2, h3, h4 {
 
   .hero {
     height: auto !important;
-    min-height: 70vh !important; /* Reduced from 90vh to reduce gap */
+    min-height: 60vh !important; /* Reduced from 70vh */
     padding-top: 100px !important;
-    padding-bottom: 40px !important; /* Reduced bottom padding */
+    padding-bottom: 20px !important; /* Minimal bottom padding */
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -144,20 +144,19 @@ h1, h2, h3, h4 {
   
   .about-image {
     width: 100% !important;
-    height: 320px !important;
-    min-height: 320px !important;
-    order: 1 !important; /* Move image to bottom */
+    height: 350px !important;
+    min-height: 350px !important;
+    order: 1 !important;
     margin-top: 2rem !important;
-  }
-
-  .about-content {
-    order: -1 !important; /* Move text to top */
-    text-align: left !important;
+    margin-bottom: 4rem !important; /* Added gap to prevent merge with vision cards */
   }
 
   .about-content h2 {
-    font-size: 2.5rem !important;
-    margin-bottom: 1.5rem !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 3rem !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 2rem !important;
   }
 
   /* Solutions section mobile */
@@ -256,6 +255,58 @@ h1, h2, h3, h4 {
     font-size: 2.2rem !important;
   }
 
+/* Modal Styling */
+.modal-header {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.modal-title-box {
+  background: rgba(30, 41, 59, 0.9);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: auto;
+  min-width: 300px;
+  max-width: 80%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-title-box h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .modal-header {
+    height: 260px !important; /* Slightly taller for mobile */
+  }
+  
+  .modal-title-box {
+    padding: 1rem 1.25rem !important; /* Much smaller box on mobile */
+    min-width: 180px !important;
+    border-radius: 12px !important;
+  }
+  
+  .modal-title-box h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .modal-title-box p {
+    font-size: 0.6rem !important;
+  }
+}
   .hero h1 {
     font-size: 2.1rem !important;
   }
