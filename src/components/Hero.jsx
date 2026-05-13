@@ -48,7 +48,7 @@ const Hero = () => {
         pointerEvents: 'none'
       }}></div>
 
-      <div className="hero-content" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="hero-content" style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '900px' }}>
         {/* Badge */}
         <div style={{
           display: 'inline-flex',
@@ -70,7 +70,7 @@ const Hero = () => {
 
         <div style={{ overflow: 'hidden' }}>
           <h1 ref={titleRef} style={{ 
-            fontSize: 'clamp(3rem, 10vw, 7rem)', 
+            fontSize: 'clamp(2.2rem, 8vw, 7rem)', 
             fontWeight: 800, 
             lineHeight: 1.1,
             marginBottom: '1rem',
@@ -83,17 +83,18 @@ const Hero = () => {
         </div>
 
         <p ref={subTitleRef} style={{ 
-          fontSize: 'clamp(1rem, 2vw, 1.25rem)', 
+          fontSize: 'clamp(0.95rem, 2vw, 1.25rem)', 
           color: '#475569', 
           maxWidth: '600px',
           fontWeight: 400,
-          margin: '0 auto'
+          margin: '0 auto',
+          padding: '0 0.5rem'
         }}>
           Where innovation meets excellence in AI-driven software development. 
           Transforming businesses with precision and creativity.
         </p>
 
-        <div ref={ctaRef} style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div ref={ctaRef} style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', padding: '0 0.5rem' }}>
           <button style={{
             padding: '1rem 2.5rem',
             fontSize: '1rem',

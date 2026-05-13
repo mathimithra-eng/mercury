@@ -1,23 +1,39 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const successRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const els = sectionRef.current.querySelectorAll('.contact-reveal');
+    els.forEach((el, i) => {
+      gsap.fromTo(el, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.7, delay: i * 0.15,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' }
+      });
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    // No automatic scroll away, stay on the message
   };
 
   return (
-    <section id="contact" style={{ padding: '100px 0', background: '#f0f4f8' }}>
+    <section id="contact" style={{ padding: '100px 0', background: '#f0f4f8' }} ref={sectionRef}>
       <div className="container">
         <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
           
           {/* Left: Contact Form */}
-          <div className="glass-card contact-form" style={{ padding: '3rem', background: '#ffffff', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
-            <h3 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#1e293b' }}>Send Us a Message</h3>
+          <div className="contact-reveal glass-card contact-form" style={{ padding: '3rem', background: '#ffffff', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
+            <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', marginBottom: '2rem', color: '#1e293b' }}>Send Us a Message</h3>
             
             {submitted ? (
               <div ref={successRef} style={{ 
@@ -49,19 +65,19 @@ const Contact = () => {
               <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>First Name</label>
-                  <input required type="text" placeholder="John" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }} />
+                  <input required type="text" placeholder="John" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '16px' }} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Last Name</label>
-                  <input required type="text" placeholder="Doe" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }} />
+                  <input required type="text" placeholder="Doe" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '16px' }} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Email Address</label>
-                  <input required type="email" placeholder="john@company.com" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }} />
+                  <input required type="email" placeholder="john@company.com" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '16px' }} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Service of Interest</label>
-                  <select style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }}>
+                  <select style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '16px' }}>
                     <option>Web Development</option>
                     <option>Mobile Solutions</option>
                     <option>AI & Automation</option>
@@ -70,7 +86,7 @@ const Contact = () => {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Your Message</label>
-                  <textarea required placeholder="Tell us about your project..." rows="4" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', resize: 'none', fontSize: '1rem' }}></textarea>
+                  <textarea required placeholder="Tell us about your project..." rows="4" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', resize: 'none', fontSize: '16px' }}></textarea>
                 </div>
                 <button type="submit" style={{ 
                   gridColumn: 'span 2', 
@@ -94,18 +110,18 @@ const Contact = () => {
           </div>
 
           {/* Right: Contact Info */}
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h2 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#1e293b', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+          <div className="contact-reveal" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 800, color: '#1e293b', lineHeight: 1.1, marginBottom: '1.5rem' }}>
               Let's Build Something <span style={{ color: '#1a7fa0' }}>Extraordinary</span>
             </h2>
-            <p style={{ color: '#64748b', fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '500px' }}>
+            <p style={{ color: '#64748b', fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', marginBottom: '3rem', maxWidth: '500px' }}>
               We're here to help you navigate the future. Reach out to our team of experts and let's start your digital transformation journey today.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
               <div>
                 <h4 style={{ fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem' }}>Contact Info</h4>
-                <p style={{ fontSize: '1.5rem', fontWeight: 600, color: '#1e293b' }}>info@mercurytech.in</p>
+                <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', fontWeight: 600, color: '#1e293b', wordBreak: 'break-word' }}>info@mercurytech.in</p>
               </div>
 
               <div>

@@ -258,6 +258,38 @@ section {
   white-space: nowrap;
 }
 
+/* ===== Mobile Card Tap Animation ===== */
+@keyframes cardTapPulse {
+  0% { box-shadow: 0 8px 25px rgba(26,127,160,0.1); }
+  50% { box-shadow: 0 12px 35px rgba(26,127,160,0.25); }
+  100% { box-shadow: 0 8px 25px rgba(26,127,160,0.1); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glowLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
 /* ===== Responsive Design ===== */
 @media (max-width: 1024px) {
   .container {
@@ -277,83 +309,444 @@ section {
   h1 { font-size: 2.8rem !important; line-height: 1.2 !important; margin-bottom: 1.5rem !important; }
   h2 { font-size: 2.2rem !important; margin-bottom: 1.5rem !important; }
 
-  /* HERO */
-  .hero { height: auto !important; min-height: 60vh !important; padding-top: 100px !important; padding-bottom: 20px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
+  /* ===== HERO MOBILE ===== */
+  .hero { 
+    height: auto !important; 
+    min-height: 85vh !important; 
+    padding-top: 100px !important; 
+    padding-bottom: 40px !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+    justify-content: center !important; 
+  }
   .hero h1 { font-size: 2.5rem !important; margin-bottom: 1rem !important; }
-  .hero p { margin-bottom: 2rem !important; }
+  .hero p { margin-bottom: 2rem !important; font-size: 1rem !important; }
   .hero-content > div:first-child { font-size: 0.7rem !important; padding: 0.4rem 1rem !important; margin-bottom: 1.5rem !important; }
 
-  /* DISABLE HOVER TRANSFORMS */
-  .glass-card:hover, .service-card:hover { transform: none !important; }
-  .service-card:hover .card-image, .about-image:hover > div, .solution-row:hover .solution-image { transform: none !important; }
+  /* ===== MOBILE CARD TRANSITIONS — ENABLED! ===== */
+  /* Touch-friendly active state transitions instead of hover */
+  .glass-card:active {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 15px 35px rgba(26, 127, 160, 0.18) !important;
+    border-color: rgba(26, 127, 160, 0.25) !important;
+  }
 
-  /* PREMIUM MOBILE VISUALS */
-  .service-card { border-bottom: 3px solid var(--accent-color) !important; box-shadow: 0 8px 25px rgba(26,127,160,0.1) !important; }
-  .vision-cards .glass-card { border-top: 3px solid var(--accent-color) !important; box-shadow: 0 8px 25px rgba(26,127,160,0.08) !important; }
-  .vision-cards .glass-card::before { display: none !important; }
-  .about-image > div { border: 2px solid rgba(26,127,160,0.15) !important; box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important; }
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-bottom: 3px solid var(--accent-color) !important;
+    box-shadow: 0 8px 25px rgba(26,127,160,0.1) !important;
+  }
+
+  .service-card:hover,
+  .service-card:active {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 45px rgba(26, 127, 160, 0.2) !important;
+  }
+
+  .service-card:active {
+    transition-duration: 1s !important;
+  }
+
+  .service-card:hover .card-image,
+  .service-card:active .card-image {
+    transform: scale(1.05) !important;
+  }
+
+  .service-card:hover h3,
+  .service-card:active h3 {
+    color: var(--accent-color) !important;
+  }
+
+  /* Vision/Mission Cards - Mobile Transitions */
+  .vision-cards .glass-card {
+    border-top: 3px solid var(--accent-color) !important;
+    box-shadow: 0 8px 25px rgba(26,127,160,0.08) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin-bottom: 1.5rem !important; /* Prevent merging */
+  }
+
+  .vision-cards .glass-card:hover,
+  .vision-cards .glass-card:active {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 18px 40px rgba(26,127,160,0.18) !important;
+  }
+
+  .vision-cards .glass-card:active {
+    transition-duration: 2s !important;
+  }
+
+  .vision-cards .glass-card::before {
+    animation: none !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent) !important;
+  }
+
+  .vision-cards .glass-card:active::before {
+    animation: glowLine 0.8s ease forwards !important;
+  }
+
+  /* About Image - Mobile Transitions */
+  .about-image > div {
+    border: 2px solid rgba(26,127,160,0.15) !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease !important;
+  }
+
+  .about-image:hover > div,
+  .about-image:active > div {
+    transform: scale(1.02) !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.18) !important;
+  }
+
   .about-content h4 { text-shadow: 0 0 15px rgba(26,127,160,0.2); }
-  .solution-content { border-left: 4px solid var(--accent-color) !important; }
-  .solution-image { box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; }
-  .contact-form { border-top: 3px solid var(--accent-color) !important; box-shadow: 0 10px 30px rgba(26,127,160,0.08) !important; }
-  .contact-form input, .contact-form textarea, .contact-form select { border: 1.5px solid #e2e8f0 !important; border-radius: 10px !important; }
+
+  /* Solution Rows - Mobile Transitions */
+  .solution-row {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .solution-content {
+    border-left: 4px solid var(--accent-color) !important;
+    transition: all 0.4s ease !important;
+  }
+
+  .solution-image {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .solution-row:hover .solution-image,
+  .solution-row:active .solution-image {
+    transform: scale(1.02) !important;
+  }
+
+  /* Contact Form - Mobile Transitions */
+  .contact-form {
+    border-top: 3px solid var(--accent-color) !important;
+    box-shadow: 0 10px 30px rgba(26,127,160,0.08) !important;
+    transition: all 0.4s ease !important;
+  }
+
+  .contact-form input, 
+  .contact-form textarea, 
+  .contact-form select {
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    transition: all 0.3s ease !important;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus,
+  .contact-form select:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px rgba(26, 127, 160, 0.12) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Footer */
   footer { border-top: 3px solid var(--accent-color) !important; }
+
+  /* Section Backgrounds */
   #services { background: linear-gradient(180deg, #f8faff 0%, #ffffff 50%, #f8faff 100%) !important; }
   #contact { background: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%) !important; }
   #solutions { background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%) !important; }
 
-  /* ABOUT MOBILE */
-  .about-grid { display: flex !important; flex-direction: column !important; gap: 1rem !important; padding-top: 0 !important; }
-  .about-image { width: 100% !important; height: 350px !important; min-height: 350px !important; order: 1 !important; margin-top: 2rem !important; margin-bottom: 4rem !important; }
-  .about-content h2 { font-family: 'Space Grotesk', sans-serif !important; font-weight: 800 !important; font-size: 3rem !important; letter-spacing: 2px !important; margin-bottom: 2rem !important; }
+  /* ===== ABOUT MOBILE LAYOUT ===== */
+  .about-grid { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 2rem !important; 
+    padding-top: 0 !important; 
+  }
+  .about-image { 
+    width: 100% !important; 
+    height: 320px !important; 
+    min-height: 320px !important; 
+    order: 1 !important; 
+    margin-top: 2rem !important; 
+    margin-bottom: 2rem !important; 
+  }
+  .about-content h2 { 
+    font-family: 'Space Grotesk', sans-serif !important; 
+    font-weight: 800 !important; 
+    font-size: 2.8rem !important; 
+    letter-spacing: 2px !important; 
+    margin-bottom: 1.5rem !important; 
+  }
+  .about-content p {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+  }
 
-  /* SOLUTIONS MOBILE */
-  .solution-row { flex-direction: column !important; min-height: auto !important; margin-bottom: 4rem !important; gap: 2rem !important; }
-  .solution-image { height: 300px !important; min-height: 300px !important; width: 100% !important; display: block !important; }
-  .solution-content { padding: 2.5rem 1.5rem !important; width: 100% !important; }
-  .solution-content h3 { font-size: 2rem !important; }
+  /* Vision Cards Grid */
+  .vision-cards {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-top: 3rem !important;
+  }
 
-  /* SERVICES MOBILE */
-  .services-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  .service-card { min-height: 400px !important; }
-  .card-image { height: 250px !important; }
+  /* ===== SOLUTIONS MOBILE LAYOUT ===== */
+  .solution-row { 
+    flex-direction: column !important; 
+    min-height: auto !important; 
+    margin-bottom: 3rem !important; 
+    gap: 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08) !important;
+  }
+  .solution-image { 
+    height: 280px !important; 
+    min-height: 280px !important; 
+    width: 100% !important; 
+    display: block !important;
+    flex: none !important;
+  }
+  .solution-content { 
+    padding: 2rem 1.5rem !important; 
+    width: 100% !important;
+    flex: none !important;
+  }
+  .solution-content h3 { font-size: 1.8rem !important; }
+  .solution-content h4 { font-size: 0.8rem !important; }
+  .solution-content p { font-size: 1rem !important; }
+  .solution-content ul li { font-size: 1rem !important; }
 
-  /* CONTACT MOBILE */
-  .contact-grid { display: flex !important; flex-direction: column !important; gap: 4rem !important; }
-  .contact-form { padding: 2rem 1.5rem !important; }
-  .contact-form h3 { font-size: 1.8rem !important; }
-  .contact-form form { grid-template-columns: 1fr !important; }
+  /* ===== SERVICES MOBILE LAYOUT ===== */
+  .services-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 2rem !important;
+    padding: 0 0.5rem !important;
+  }
+  .service-card { 
+    min-height: auto !important;
+    border-radius: 16px !important;
+  }
+  .card-image { height: 220px !important; }
+  .service-card > div:last-child {
+    padding: 1.5rem !important;
+  }
+  .service-card h3 {
+    font-size: 1.5rem !important;
+  }
+
+  /* ===== CONTACT MOBILE LAYOUT ===== */
+  .contact-grid { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 3rem !important; 
+  }
+  .contact-form { 
+    padding: 2rem 1.25rem !important;
+    border-radius: 16px !important;
+  }
+  .contact-form h3 { font-size: 1.6rem !important; }
+  .contact-form form { 
+    grid-template-columns: 1fr !important; 
+    gap: 1.25rem !important;
+  }
   .contact-form form > * { grid-column: span 1 !important; }
+  .contact-form form button[type="submit"] {
+    grid-column: span 1 !important;
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    border-radius: 12px !important;
+  }
 
-  /* FOOTER MOBILE */
-  footer .container > div { display: flex !important; flex-direction: column !important; gap: 3rem !important; text-align: center; }
-  .footer-col { width: 100% !important; align-items: center !important; display: flex !important; flex-direction: column !important; }
-  .footer-col ul { display: flex !important; flex-direction: column !important; align-items: center !important; }
+  /* Contact Info Side */
+  .contact-grid > div:last-child h2 {
+    font-size: 2.2rem !important;
+    line-height: 1.15 !important;
+  }
+  .contact-grid > div:last-child p {
+    font-size: 1.05rem !important;
+  }
+  .contact-grid > div:last-child > div:last-child {
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    margin-top: 2rem !important;
+  }
+  .contact-grid > div:last-child > div:last-child p {
+    font-size: 1.05rem !important;
+  }
+
+  /* ===== FOOTER MOBILE LAYOUT ===== */
+  footer .container > div { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 2.5rem !important; 
+    text-align: center; 
+  }
+  .footer-col { 
+    width: 100% !important; 
+    align-items: center !important; 
+    display: flex !important; 
+    flex-direction: column !important; 
+  }
+  .footer-col ul { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: center !important; 
+  }
   .footer-col a, .footer-col button { justify-content: center !important; }
+
+  /* Footer Bottom Bar */
+  .bottom-bar {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+
+  /* ===== SECTION PADDING MOBILE ===== */
+  #services.container,
+  section#services {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  section#about {
+    padding: 60px 0 !important;
+  }
+  section#solutions {
+    padding: 60px 0 !important;
+  }
+  section#contact {
+    padding: 60px 0 !important;
+  }
+
+  /* Services Section Title */
+  #services > div:first-child h2,
+  section#services h2 {
+    font-size: 2.2rem !important;
+  }
+  #services > div:first-child p {
+    font-size: 1rem !important;
+  }
+
+  /* Solutions Section Title */
+  #solutions .container > h2,
+  #solutions > .container > h2 {
+    font-size: 2.2rem !important;
+  }
 }
-  
 
-
-
+/* ===== Extra Small Devices ===== */
 @media (max-width: 480px) {
   .container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
   }
 
   h1 {
-    font-size: 2.2rem !important;
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.8rem !important;
   }
 
   .hero h1 {
-    font-size: 2.1rem !important;
+    font-size: 2rem !important;
+  }
+
+  .hero {
+    min-height: 80vh !important;
+    padding-top: 90px !important;
+  }
+
+  .hero p {
+    font-size: 0.95rem !important;
+  }
+
+  /* Hero CTA Buttons */
+  .hero-content > div:last-child {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    align-items: stretch !important;
+  }
+
+  .hero-content > div:last-child button {
+    width: 100% !important;
+    padding: 0.9rem 1.5rem !important;
+    font-size: 0.95rem !important;
   }
 
   .about-image {
-    height: 280px !important;
+    height: 260px !important;
+    min-height: 260px !important;
+  }
+
+  .about-content h2 {
+    font-size: 2.2rem !important;
+  }
+
+  .about-content > div:last-child {
+    gap: 1.5rem !important;
+  }
+
+  .about-content h4 {
+    font-size: 2rem !important;
   }
   
   .solution-image {
-    height: 250px !important;
+    height: 220px !important;
+    min-height: 220px !important;
+  }
+
+  .solution-content {
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .solution-content h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .card-image {
+    height: 180px !important;
+  }
+
+  .service-card h3 {
+    font-size: 1.35rem !important;
+  }
+
+  /* Contact */
+  .contact-form h3 {
+    font-size: 1.4rem !important;
+  }
+
+  .contact-grid > div:last-child h2 {
+    font-size: 1.8rem !important;
+  }
+
+  /* Vision Cards */
+  .vision-cards .glass-card {
+    padding: 1.75rem !important;
+  }
+
+  .vision-cards .glass-card h4 {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* ===== Ultra Small Devices (320px) ===== */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .about-content h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .solution-content h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .contact-grid > div:last-child h2 {
+    font-size: 1.5rem !important;
   }
 }
 
@@ -397,13 +790,13 @@ section {
 /* Mobile modal adjustments */
 @media (max-width: 768px) {
   .modal-header {
-    height: 220px !important;
+    height: 200px !important;
   }
   
   .modal-title-box {
     padding: 0.75rem 1rem !important;
     min-width: 150px !important;
-    max-width: 55% !important;
+    max-width: 70% !important;
     border-radius: 12px !important;
   }
   

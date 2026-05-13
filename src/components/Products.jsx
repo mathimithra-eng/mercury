@@ -56,32 +56,38 @@ const Products = () => {
 
   useEffect(() => {
     sectionsRef.current.forEach((section, index) => {
+      if (!section) return;
+      
       const isEven = index % 2 === 0;
       const content = section.querySelector('.content');
       const image = section.querySelector('.image-box');
 
+      // Content slides in from left/right
       gsap.fromTo(content, 
-        { opacity: 0, x: isEven ? -50 : 50 },
+        { opacity: 0, x: isEven ? -40 : 40 },
         { 
           opacity: 1, 
           x: 0, 
-          duration: 1, 
+          duration: 0.8, 
+          ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 70%",
+            start: "top 80%",
           }
         }
       );
 
+      // Image scales in
       gsap.fromTo(image, 
-        { opacity: 0, scale: 0.9 },
+        { opacity: 0, scale: 0.92 },
         { 
           opacity: 1, 
           scale: 1, 
-          duration: 1.2,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 70%",
+            start: "top 80%",
           }
         }
       );
@@ -90,9 +96,9 @@ const Products = () => {
 
   return (
     <section id="solutions" style={{ padding: '100px 0', background: '#ffffff' }}>
-      <div className="container" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-        <h2 style={{ fontSize: '3.5rem', fontWeight: 700, marginBottom: '1rem', color: '#1e293b' }}>Smart Solutions</h2>
-        <p style={{ color: '#475569', fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto' }}>
+      <div className="container" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700, marginBottom: '1rem', color: '#1e293b' }}>Smart Solutions</h2>
+        <p style={{ color: '#475569', fontSize: 'clamp(1rem, 2vw, 1.25rem)', maxWidth: '700px', margin: '0 auto' }}>
           Reshaping industries with automation, AI, and cutting-edge innovation.
         </p>
       </div>
@@ -106,18 +112,17 @@ const Products = () => {
             style={{ 
               display: 'flex', 
               flexDirection: i % 2 === 0 ? 'row' : 'row-reverse',
-              alignItems: 'center',
-              minHeight: '600px',
+              alignItems: 'stretch',
+              minHeight: '500px',
               width: '100%',
-              marginBottom: '4rem',
+              marginBottom: '2rem',
               overflow: 'hidden'
             }}
           >
             {/* Image side */}
             <div className="image-box solution-image" style={{ 
               flex: 1, 
-              height: '100%', 
-              minHeight: '600px',
+              minHeight: '500px',
               backgroundImage: `url(${p.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
@@ -130,15 +135,18 @@ const Products = () => {
             <div className="content solution-content" style={{ 
               flex: 1, 
               padding: '4rem',
-              background: i % 2 === 0 ? '#f8faff' : '#ffffff'
+              background: i % 2 === 0 ? '#f8faff' : '#ffffff',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
             }}>
               <h4 style={{ color: '#1a7fa0', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '2px', marginBottom: '1rem' }}>
                 {p.category}
               </h4>
-              <h3 style={{ fontSize: '3rem', fontWeight: 800, color: '#1e293b', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+              <h3 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 800, color: '#1e293b', marginBottom: '1.5rem', lineHeight: 1.1 }}>
                 {p.name}
               </h3>
-              <p style={{ fontSize: '1.25rem', color: '#475569', marginBottom: '2rem', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.25rem)', color: '#475569', marginBottom: '2rem', lineHeight: 1.6 }}>
                 {p.desc}
               </p>
               <ul style={{ listStyle: 'none', padding: 0 }}>
