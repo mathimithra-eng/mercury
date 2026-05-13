@@ -44,12 +44,13 @@ const Services = () => {
     const cards = containerRef.current.querySelectorAll('.service-card');
     
     gsap.fromTo(cards, 
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 60 },
       { 
         opacity: 1, 
         y: 0, 
-        duration: 0.8, 
-        stagger: 0.2,
+        duration: 0.7, 
+        stagger: 0.15,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
@@ -61,6 +62,16 @@ const Services = () => {
   return (
     <section id="services" className="container" style={{ padding: '100px 0' }} ref={containerRef}>
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <p style={{ 
+          color: '#1a7fa0', 
+          fontSize: '0.85rem', 
+          fontWeight: 700, 
+          textTransform: 'uppercase', 
+          letterSpacing: '3px', 
+          marginBottom: '1rem' 
+        }}>
+          What We Do
+        </p>
         <h2 style={{ fontSize: '3.5rem', fontWeight: 700, marginBottom: '1rem' }}>Our Services</h2>
         <p style={{ color: '#475569', fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto', marginBottom: '3rem' }}>
           We offer comprehensive technology solutions tailored to your business needs, driven by innovation.
@@ -86,19 +97,32 @@ const Services = () => {
               borderRadius: '16px'
             }}
           >
-            <div style={{ 
-              width: '100%', 
-              height: '200px', 
-              backgroundImage: `url(${s.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: '#f1f5f9'
-            }}
-            className="card-image"
-            ></div>
+            <div style={{ overflow: 'hidden' }}>
+              <div style={{ 
+                width: '100%', 
+                height: '200px', 
+                backgroundImage: `url(${s.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundColor: '#f1f5f9'
+              }}
+              className="card-image"
+              ></div>
+            </div>
             <div style={{ padding: '2rem' }}>
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#1e293b' }}>{s.title}</h3>
-              <p style={{ color: '#475569', fontSize: '1.1rem' }}>{s.desc}</p>
+              <h3 style={{ fontSize: '1.75rem', marginBottom: '0.75rem', color: '#1e293b' }}>{s.title}</h3>
+              <p style={{ color: '#475569', fontSize: '1rem', lineHeight: '1.6' }}>{s.desc}</p>
+              <div style={{ 
+                marginTop: '1.5rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.5rem',
+                color: '#1a7fa0',
+                fontWeight: 600,
+                fontSize: '0.9rem'
+              }}>
+                Learn More <span>→</span>
+              </div>
             </div>
           </div>
         ))}

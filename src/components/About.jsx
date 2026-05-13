@@ -41,7 +41,7 @@ const About = () => {
               The name ‘Mercury’ symbolizes fluidity, precision, and speed—qualities that define our team and shape the way we approach every project.
             </p>
             <p className="reveal-item" style={{ color: '#475569', fontSize: '1.25rem', marginBottom: '2.5rem' }}>
-              Our 360-degree approach ensures that we consider every angle, delivering holistic solutions that transform industries through AI, design, and innovation.
+              We are committed to delivering future-ready software solutions that empower businesses to thrive in the digital age. By blending creative thinking with technical excellence, we help our clients build sustainable growth and industry leadership.
             </p>
             
             <div className="reveal-item" style={{ display: 'flex', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap' }}>
