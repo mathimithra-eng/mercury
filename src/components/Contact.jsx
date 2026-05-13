@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const successRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    // Hide message after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000);
+    // No automatic scroll away, stay on the message
   };
 
   return (
@@ -16,21 +16,34 @@ const Contact = () => {
         <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
           
           {/* Left: Contact Form */}
-          <div className="glass-card contact-form" style={{ padding: '3rem', background: '#ffffff' }}>
+          <div className="glass-card contact-form" style={{ padding: '3rem', background: '#ffffff', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
             <h3 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: '#1e293b' }}>Send Us a Message</h3>
             
             {submitted ? (
-              <div style={{ 
+              <div ref={successRef} style={{ 
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
                 padding: '2rem', 
-                background: '#dcfce7', 
+                background: '#f8fafc', 
                 color: '#166534', 
                 borderRadius: '12px', 
                 textAlign: 'center',
                 fontWeight: 600,
                 fontSize: '1.25rem',
-                border: '1px solid #bbf7d0'
+                border: '2px solid #22c55e'
               }}>
-                ✅ Message sent successfully!
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✅</div>
+                Message sent successfully!<br/>
+                <span style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1rem', fontWeight: 400 }}>We will get back to you within 24 hours.</span>
+                <button 
+                  onClick={() => setSubmitted(false)}
+                  style={{ marginTop: '2rem', background: '#1a7fa0', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.9rem' }}
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
@@ -45,10 +58,6 @@ const Contact = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Email Address</label>
                   <input required type="email" placeholder="john@company.com" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
-                  <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Phone Number</label>
-                  <input required type="text" placeholder="+91 98765 43210" style={{ padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '1rem' }} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', gridColumn: 'span 2' }}>
                   <label style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>Service of Interest</label>
@@ -96,7 +105,6 @@ const Contact = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
               <div>
                 <h4 style={{ fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem' }}>Contact Info</h4>
-                <p style={{ fontSize: '1.5rem', fontWeight: 600, color: '#1e293b' }}>+91 80568 23309</p>
                 <p style={{ fontSize: '1.5rem', fontWeight: 600, color: '#1e293b' }}>info@mercurytech.in</p>
               </div>
 

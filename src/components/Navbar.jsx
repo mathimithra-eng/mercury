@@ -36,7 +36,6 @@ const Navbar = () => {
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
       }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* Logo - Updated to MERCURY TECHNOLOGY */}
           <div className="logo" style={{ 
             fontSize: '1.2rem', 
             fontWeight: 900, 
@@ -47,7 +46,6 @@ const Navbar = () => {
             MERCURY <span style={{ color: '#1a7fa0' }}>TECHNOLOGY</span>
           </div>
 
-          {/* Desktop Menu */}
           <div className="nav-links-desktop" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
             {navLinks.map((item) => (
               <a 
@@ -58,11 +56,8 @@ const Navbar = () => {
                   color: isScrolled ? '#1e293b' : '#1e293b', 
                   fontSize: '0.9rem', 
                   fontWeight: 600,
-                  transition: 'all 0.3s ease',
-                  letterSpacing: '0.5px'
+                  transition: 'all 0.3s ease'
                 }}
-                onMouseOver={(e) => e.target.style.color = '#1a7fa0'}
-                onMouseOut={(e) => e.target.style.color = '#1e293b'}
               >
                 {item.name}
               </a>
@@ -74,18 +69,12 @@ const Navbar = () => {
               textDecoration: 'none',
               borderRadius: '50px',
               fontWeight: 700,
-              fontSize: '0.9rem',
-              transition: 'transform 0.3s ease',
-              boxShadow: '0 4px 15px rgba(26, 127, 160, 0.2)'
-            }}
-            onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
-            >
+              fontSize: '0.9rem'
+            }}>
               Contact Us
             </a>
           </div>
 
-          {/* Mobile Toggle */}
           <button 
             className="mobile-toggle"
             onClick={toggleMenu}
@@ -96,7 +85,7 @@ const Navbar = () => {
               cursor: 'pointer',
               padding: '10px',
               borderRadius: '8px',
-              zIndex: 1001
+              zIndex: 2001
             }}
           >
             <div style={{ width: '20px', height: '2px', background: '#fff', marginBottom: '5px' }}></div>
@@ -105,40 +94,41 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Floating Mobile Menu - STG Style */}
       <div style={{
         position: 'fixed',
-        top: 0,
-        right: isMenuOpen ? 0 : '-100%',
-        width: '55%',
-        height: '100vh',
+        top: isMenuOpen ? '80px' : '-500px', /* Slide down from top */
+        right: '20px',
+        width: '280px', /* Fixed width box */
         background: '#0f172a', 
-        boxShadow: '-15px 0 40px rgba(0,0,0,0.5)',
+        borderRadius: '20px',
+        boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
         display: 'flex',
         flexDirection: 'column',
-        padding: '100px 30px 40px',
-        transition: '0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-        zIndex: 2000
+        padding: '30px',
+        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+        zIndex: 2000,
+        opacity: isMenuOpen ? 1 : 0,
+        pointerEvents: isMenuOpen ? 'all' : 'none'
       }}>
-        {/* Close Button */}
+        {/* Close Button Inside Box */}
         <button 
           onClick={toggleMenu}
           style={{
             position: 'absolute',
-            top: '30px',
-            right: '30px',
+            top: '15px',
+            right: '15px',
             background: 'none',
             border: 'none',
-            color: '#fff',
-            fontSize: '2rem',
+            color: 'rgba(255,255,255,0.5)',
+            fontSize: '1.2rem',
             cursor: 'pointer'
           }}
         >
           ✕
         </button>
 
-        {/* Links List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {navLinks.map((item) => (
             <a 
               key={item.name}
@@ -147,10 +137,9 @@ const Navbar = () => {
               style={{ 
                 textDecoration: 'none', 
                 color: '#fff', 
-                fontSize: '1.25rem', 
-                fontWeight: 700,
-                letterSpacing: '1px',
-                opacity: 0.9
+                fontSize: '1.1rem', 
+                fontWeight: 600,
+                letterSpacing: '0.5px'
               }}
             >
               {item.name}
@@ -162,25 +151,19 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
             style={{
               marginTop: '1rem',
-              padding: '1rem',
+              padding: '12px',
               background: '#1a7fa0',
               color: '#fff',
               textDecoration: 'none',
-              borderRadius: '8px',
+              borderRadius: '12px',
               textAlign: 'center',
               fontWeight: 800,
-              fontSize: '1rem',
-              textTransform: 'uppercase',
-              letterSpacing: '1px'
+              fontSize: '0.9rem',
+              textTransform: 'uppercase'
             }}
           >
             Contact Us
           </a>
-        </div>
-
-        <div style={{ marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Mercury - Innovation</p>
-          <p style={{ color: '#fff', fontWeight: 500, fontSize: '0.85rem' }}>Building the Future.</p>
         </div>
       </div>
 
@@ -190,8 +173,7 @@ const Navbar = () => {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0,0,0,0.4)',
-            backdropFilter: 'blur(4px)',
+            background: 'rgba(0,0,0,0.1)',
             zIndex: 1999
           }}
         />
