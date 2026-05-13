@@ -102,9 +102,8 @@ const Contact = () => {
 
               <div>
                 <h4 style={{ fontSize: '1rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem' }}>Office Locations</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
                   <p style={{ color: '#475569', fontWeight: 500, fontSize: '1.1rem' }}>• Thanjavur</p>
-                  <p style={{ color: '#475569', fontWeight: 500, fontSize: '1.1rem' }}>• Bengaluru</p>
                 </div>
               </div>
             </div>

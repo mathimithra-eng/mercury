@@ -36,15 +36,15 @@ const Navbar = () => {
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
       }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* Logo */}
+          {/* Logo - Updated to MERCURY TECHNOLOGY */}
           <div className="logo" style={{ 
-            fontSize: '1.4rem', 
+            fontSize: '1.2rem', 
             fontWeight: 900, 
             color: '#1e293b', 
             letterSpacing: '0.5px',
             textTransform: 'uppercase'
           }}>
-            MERCURY <span style={{ color: '#1a7fa0' }}>TECH</span>
+            MERCURY <span style={{ color: '#1a7fa0' }}>TECHNOLOGY</span>
           </div>
 
           {/* Desktop Menu */}
@@ -56,7 +56,7 @@ const Navbar = () => {
                 style={{ 
                   textDecoration: 'none', 
                   color: isScrolled ? '#1e293b' : '#1e293b', 
-                  fontSize: '0.95rem', 
+                  fontSize: '0.9rem', 
                   fontWeight: 600,
                   transition: 'all 0.3s ease',
                   letterSpacing: '0.5px'
@@ -85,7 +85,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Toggle - Styled like screenshot */}
+          {/* Mobile Toggle */}
           <button 
             className="mobile-toggle"
             onClick={toggleMenu}
@@ -105,14 +105,14 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay - STG Style */}
+      {/* Mobile Menu Overlay */}
       <div style={{
         position: 'fixed',
         top: 0,
         right: isMenuOpen ? 0 : '-100%',
-        width: '70%',
+        width: '55%',
         height: '100vh',
-        background: '#0f172a', /* Dark slate/black theme */
+        background: '#0f172a', 
         boxShadow: '-15px 0 40px rgba(0,0,0,0.5)',
         display: 'flex',
         flexDirection: 'column',
@@ -157,7 +157,6 @@ const Navbar = () => {
             </a>
           ))}
           
-          {/* CTA Button in Mobile Menu */}
           <a 
             href="#contact" 
             onClick={() => setIsMenuOpen(false)}
@@ -179,14 +178,12 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Footer Info in Menu */}
         <div style={{ marginTop: 'auto', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Mercury - Innovation</p>
           <p style={{ color: '#fff', fontWeight: 500, fontSize: '0.85rem' }}>Building the Future.</p>
         </div>
       </div>
 
-      {/* Dark Overlay when menu is open */}
       {isMenuOpen && (
         <div 
           onClick={toggleMenu}

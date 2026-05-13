@@ -15,11 +15,11 @@ const About = () => {
       { 
         opacity: 1, 
         x: 0, 
-        duration: 1, 
-        stagger: 0.3,
+        duration: 0.5, /* Speed up from 1s to 0.5s */
+        stagger: 0.15,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 70%",
+          start: "top 85%",
         }
       }
     );

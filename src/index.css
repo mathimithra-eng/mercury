@@ -117,9 +117,9 @@ h1, h2, h3, h4 {
 
   .hero {
     height: auto !important;
-    min-height: 90vh !important;
-    padding-top: 140px !important;
-    padding-bottom: 80px !important;
+    min-height: 70vh !important; /* Reduced from 90vh to reduce gap */
+    padding-top: 100px !important;
+    padding-bottom: 40px !important; /* Reduced bottom padding */
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -138,20 +138,20 @@ h1, h2, h3, h4 {
   .about-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 2rem !important;
-    padding-top: 2rem !important;
+    gap: 1rem !important; /* Minimal gap */
+    padding-top: 0 !important;
   }
   
   .about-image {
     width: 100% !important;
-    height: 350px !important;
-    min-height: 350px !important;
-    order: -1 !important;
-    margin-bottom: 2rem !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    order: 1 !important; /* Move image to bottom */
+    margin-top: 2rem !important;
   }
 
   .about-content {
-    order: 1 !important;
+    order: -1 !important; /* Move text to top */
     text-align: left !important;
   }
 

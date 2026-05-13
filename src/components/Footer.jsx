@@ -29,8 +29,8 @@ const Footer = () => {
       <div className="container">
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '3rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+          gap: '2rem',
           marginBottom: '50px'
         }}>
           
@@ -42,7 +42,7 @@ const Footer = () => {
             <p style={{ color: '#1a7fa0', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '1.5rem', letterSpacing: '1px' }}>
               Global Software Powerhouse
             </p>
-            <p style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.9rem', maxWidth: '350px' }}>
+            <p style={{ color: '#475569', lineHeight: '1.6', fontSize: '0.9rem', maxWidth: '300px' }}>
               Driving digital transformation through strategic innovation and intelligent software solutions. We build the infrastructure for the next generation of business.
             </p>
           </div>
@@ -75,7 +75,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
+          {/* Column 4: Contact (Next to Support in Laptop view) */}
           <div className="footer-col" style={{ marginBottom: '1.5rem' }}>
             <h4 style={{ color: '#1a7fa0', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '1.5rem', letterSpacing: '1px' }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -83,7 +83,7 @@ const Footer = () => {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a7fa0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
                 Instagram
               </a>
-              <a href="#" style={{ color: '#475569', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <a href="https://www.linkedin.com/in/mercury-technology-9a2771409" target="_blank" rel="noopener noreferrer" style={{ color: '#475569', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a7fa0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 LinkedIn
               </a>
@@ -102,16 +102,16 @@ const Footer = () => {
           gap: '1rem'
         }}>
           <p style={{ color: '#64748b', fontSize: '0.8rem' }}>
-            © {new Date().getFullYear()} Mercury Tech. All rights reserved.
+            © {new Date().getFullYear()} MERCURY TECHNOLOGY. All rights reserved.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#64748b', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }}>
             <span style={{ width: '8px', height: '8px', background: '#22c55e', borderRadius: '50%', display: 'inline-block', boxShadow: '0 0 10px rgba(34, 197, 94, 0.5)' }}></span>
-            MERCURY TECH OPERATIONS
+            MERCURY TECHNOLOGY OPERATIONS
           </div>
         </div>
       </div>
 
-      {/* Modal with Corrected Point Alignment and Scroll Prevention */}
+      {/* Modal */}
       {modalContent && (
         <div style={{
           position: 'fixed',
@@ -166,7 +166,7 @@ const Footer = () => {
             }}>
               <div style={{ background: 'rgba(30, 41, 59, 0.8)', padding: '1.5rem', borderRadius: '16px', backdropFilter: 'blur(10px)' }}>
                 <h2 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>{modalContent === 'terms' ? 'Terms & Service' : 'Privacy Policy'}</h2>
-                <p style={{ fontSize: '0.85rem', opacity: 0.9 }}>Mercury Tech Operational Guidelines</p>
+                <p style={{ fontSize: '0.85rem', opacity: 0.9 }}>MERCURY TECHNOLOGY Operational Guidelines</p>
               </div>
             </div>
             
